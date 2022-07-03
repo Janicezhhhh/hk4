@@ -1,0 +1,81 @@
+\documentclass{article}
+
+\usepackage[UTF8]{ctex}       %中文
+\usepackage{microtype}        %排版相关
+\usepackage[american]{babel}  %排版相关
+\usepackage{amsmath}          %数学公式
+\usepackage{amssymb}          %数学公式
+%\usepackage{cite}%引用
+%\usepackage[numbers,sort&compress]{natbib}
+   \title{作业四：Mandelbrot Set的生成和探索}
+   \author{Janice\_zh}
+   \date{\today}
+   
+   \begin{document}
+   	\maketitle   %加标题
+   	\renewcommand{\contentsname}{目录}
+   	\tableofcontents  %加目录
+   	
+   	\renewcommand{\abstractname}{摘要}
+   	\begin{abstract}
+   		本文从Mandelbrot set的背景出发，解析Mandelbrot set的数学原理与算法，通过修改参数深入探索Mandelbrot set，并通过代码和图片重现Mandelbrot set。
+   	\end{abstract}
+   	\section{引言}
+   	Mandelbrot set的诞生是人们在数学计算领域的一大创新与突破。简洁的代码背后蕴含着重要数学定理与科学探索方法，给后人以无限启示，值得探究。
+   	\section{问题的背景介绍}
+   	曼德博集合（Mandelbrot set，或译为曼德布洛特复数集合）是一种在复平面上组成分形的点的集合，以数学家本华·曼德博的名字命名，由复二次多项式迭代形成。
+   	\section{数学理论}
+   	\paragraph{Theorem:}The orbit of 0 tends to infinity if and only if at some point it has modulus >2. \cite{R}
+   	
+   	\paragraph{定义：}曼德博集合可以用复二次多项式来定义： 
+   	\begin{equation}
+   	f(z)=z^2+c,其中c是一个负数参数
+   	\end{equation}
+   	从z=0开始对f(z)进行迭代：
+   	\begin{equation}
+   	z_{n+1}=z^2_n+c,n=0,1,2,...
+   	\end{equation}
+   	\begin{equation}
+   	z_0=0.\nonumber
+   	\end{equation}
+   	\begin{equation}
+   	z_1=z^2_0+c=c.\nonumber
+   	\end{equation}
+   	\begin{equation}
+   	z_2=z^2_1+c=c^2+c.\nonumber
+   	\end{equation}
+   	\begin{equation}
+   	...\nonumber
+   	\end{equation}
+   	\paragraph{}
+   	不同的参数可能使迭代值的模逐渐发散到无限大，也可能收敛在有限的区域内。
+   	曼德博集合就是使其不扩散的所有复数的集合。
+   	\section{算法}
+   	\begin{verbatim}
+   	Choose a maximal iteration number N
+   	For each pixel p of the image:
+   	Let c be the complex number represented by p
+   	Let z be a complex variable
+   	Set z to 0
+   	Do the following N times:    
+   	If |z|>2 then color the pixel white, end this loop prematurely, go to the next pixel
+   	Otherwise replace z by z*z+c
+   	If the loop above reached its natural end: color the pixel p in black
+   	Go to the next pixel
+   	\end{verbatim}
+   	\section{数值算例}
+   	\begin{figure}[ht]
+   		当$N=20$,得到的图像如图所示:\\
+   		\includegraphics[width=1\linewidth]{images/test.bmp}
+   		\caption{N=20}
+   	\end{figure}
+   	改变迭代次数$N$，会得到不同的图像。
+   	\section{结论} 
+   	将曼德博集合无限放大都能够有精妙的细节在内，而这瑰丽的图案仅仅由一个简单的公式生成。因此有人认为曼德博集合是“人类有史以来做出的最奇异、最瑰丽的几何图形”，曾被称为“上帝的指纹”。
+   	\bibliography{ref}
+   	\bibliographystyle{IEEEtran}
+   	
+   	
+   	
+   \end{document}
+   
